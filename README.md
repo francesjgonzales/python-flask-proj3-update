@@ -17,9 +17,9 @@
 - allows frequent updates
 - performs faster performance and scale easily
 - Structure:
-  ├── Database # Cluster contains database
-  │ ├── Collections # Each database contains a number of collections
-  │ ├──├── Documents # Stores KEY and VALUE pair per unique ID
+  1. Database # Cluster contains database
+  2. Collections # Each database contains a number of collections
+  3. Documents # Stores KEY and VALUE pair per unique ID
 
 ## Encountered issues and how it was resolved
 
