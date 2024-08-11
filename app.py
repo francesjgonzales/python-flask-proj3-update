@@ -1,17 +1,23 @@
 from flask import Flask
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 import os
 import pprint
 from pymongo import MongoClient
+import certifi
 
-load_dotenv()
+load_dotenv(find_dotenv())
 
-mongoURL = os.getenv("MONGODB_URL")
+password = os.environ.get("MONGODB_PWD")
+connection_string = f"mongodb+srv://jen:{password}@studentdb.thkbj.mongodb.net/?retryWrites=true&w=majority"
+client = MongoClient(connection_string, tlsCAFile=certifi.where())
 
-client = MongoClient(mongoURL)
+""" print all database names """
 dbs = client.list_database_names()
-print(dbs)
 
+""" print specific collection """
+student_db = client.student
+collection = student_db.list_collection_names()
+print(collection)
 
 app = Flask(__name__)
 
