@@ -24,3 +24,7 @@
 ## Encountered issues and how it was resolved
 
 1. `SSL: CERTIFICATE_VERIFY_FAILED` - added `tlsCAFile=certifi.where()` in connection string. [documentation](https://stackoverflow.com/questions/68123923/pymongo-ssl-certificate-verify-failed-certificate-verify-failed-unable-to-ge)
+
+## Reload Flask with new code changes reflects
+
+`flask --app <app name> run --debug`
