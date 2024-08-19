@@ -15,10 +15,10 @@ connection_string = f"mongodb+srv://jen:{password}@studentdb.thkbj.mongodb.net/?
 client = MongoClient(connection_string, tlsCAFile=certifi.where())
 
 """ print all database names """
-dbs = client.list_database_names()
+""" dbs = client.list_database_names() """
 
 """ print specific collection """
-student_db = client.student
+""" student_db = client.student
 collections = student_db.list_collection_names()
 print(collections)
 
@@ -35,13 +35,13 @@ def insert_student_doc():
     print(inserted_id)
 
 insert_student_doc()
-
+ """
 
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
-    return render_template('base.template.html')
+def home():
+    return render_template('home.template.html')
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
