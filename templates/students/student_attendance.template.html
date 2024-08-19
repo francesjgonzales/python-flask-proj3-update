@@ -1,0 +1,48 @@
+{% extends 'base.template.html' %}
+
+{% block content %}
+
+<br>
+<br>
+
+<div class="container">
+<h2>Student Attendance</h2>
+
+    <div class="table-responsive">
+    <table class="table table-hover table-responsive-xl">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>      
+            <th>Clock In</th>
+            <th>Clock Out</th>
+            <th>Temparature</th>
+            <th>Class Group</th>
+            <th>Remarks</th>
+            <th>Attendance</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for each_student_attendance in all_student_attendance %}
+        <tr>
+            <td>{{each_student_attendance.first_name}}</td>
+            <td>{{each_student_attendance.last_name}}</td>
+            <td>{{each_student_attendance.clock_in}}</td>
+            <td>{{each_student_attendance.clock_out}}</td>
+            <td>{{each_student_attendance.temparature}}</td>
+            <td>{{each_student_attendance.class_groupId}}</td>
+            <td>{{each_student_attendance.remarks}}</td>
+            <td><a href="{{ url_for('show_edit_student_attendance', student_id=each_student_attendance._id) }}" class="btn btn">Update </a></td>
+            <td><a href="{{ url_for('show_edit_student_attendance', student_id=each_student_attendance._id) }}" class="btn btn">Edit </a></td>
+            <td><a href="{{ url_for('show_confirm_delete', student_id=each_student_attendance._id) }}" class="btn btn">Delete </a></td>
+        </tr>  
+
+        {%endfor%}
+
+        </thead>
+
+    </table>
+    </div>
+</div>
+
+{% endblock %}

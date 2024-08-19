@@ -40,10 +40,10 @@
 
     <div class="container">
         <nav class="breadcrumb m-2">
-            <a class="nav-link active" aria-current="page" href="">Main</a>
-            <a class="nav-link" href="">Search</a>
-            <a class="nav-link" href="">Student Profile</a>
-            <a class="nav-link" href="">Student Attendance</a>
+            <a class="nav-link active" aria-current="page" href="{{url_for('show_teachers')}}">Main</a>
+            <a class="nav-link" href="{{url_for('show_search_form')}}">Search</a>
+            <a class="nav-link" href="{{url_for('show_student_profile')}}">Student Profile</a>
+            <a class="nav-link" href="{{url_for('show_student_attendance')}}">Student Attendance</a>
         </nav>
     </div>
 

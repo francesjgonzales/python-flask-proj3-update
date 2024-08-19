@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% block externalscript %} {% endblock %}
+
+    <link rel="stylesheet" href="/static/css/style.css" />
+    {% block css %} {% endblock %}
+    
+	<title>SAT</title>
+</head>
+
+<body>
+
+<!-- NAV BAR -->
+<nav class="navbar navbar-expand-lg navbar-light mx-5">
+  <a class="navbar-brand" href="#"><p style="font-size: 50px">SAT</p></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav text-right ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('show_teachers') }}">Home</a>
+          </li>
+
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+          </li> 
+      </ul>
+  </div>        
+</nav>   
+
+    <div class="container mx-5">
+        <h1 class="display-4">Welcome, Teacher!</h1>
+
+        <p class="lead">Explore the page by adding your students and sorting them according to your class groups</p>
+
+        <div class="row">
+            <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="static/images/kid_attendance.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Student Attendance</h5>
+                    <p class="card-text">Check student's attendance and update timing and temparature checks.</p>
+                    <a href = "{{ url_for ('show_student_attendance') }}" class="btn btn-success">Visit</a>
+                </div>
+            </div>
+
+            <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="static/images/search-image.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Search</h5>
+                    <p class="card-text">Search according to student's name, class group or teacher</p>
+                    <a href = "{{ url_for ('show_search_form') }}" class="btn btn-success">Visit</a>
+                </div>
+            </div>
+            <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="static/images/children_profile.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Student Profile</h5>
+                    <p class="card-text">View your student's profile</p>
+                    <a href = "{{ url_for ('show_student_profile') }}" class="btn btn-success">Visit</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+<!-- Bootstrap javascript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+<!-- custom javascript -->
+<script src="/static/js/script.js"></script>
+{% block js %}{% endblock %}
+
+</body>
+
+</html>

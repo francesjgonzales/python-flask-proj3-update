@@ -1,0 +1,87 @@
+{% extends 'base.template.html' %}
+
+{% block content %}
+<form method="POST">
+
+<div class="container">
+    <h2 style="text-align:center">Submit Attendance</h2>
+
+    <div class="row">
+        <div class="col-sm">
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">TIME IS</h6>
+                    <span id="clock"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Date today</h6>
+                    <span id="date">{{today.strftime('%B-%d-%Y')}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col mt-3">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" name="first_name" value="{{all_student_attendance.first_name}}"/>
+        </div>
+        <div class="col mt-3">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" name="last_name" value="{{all_student_attendance.last_name}}"/>
+        </div>
+        <div class="col mt-3">
+            <label class="form-label">Temparature</label>
+            <input type="text" class="form-control" name="temparature" value="{{all_student_attendance.temparature}}"/>
+        </div>
+        <div class="col mt-3">
+            <label class="form-label">Clock in</label>
+            <input type="time" class="form-control" name="clock_in" value="{{all_student_attendance.clock_in}}"/>
+        </div>
+        <div class="col mt-3">
+            <label class="form-label">Clock out</label>
+            <input type="time" class="form-control" name="clock_out" value="{{all_student_attendance.clock_out}}"/>
+        </div>
+        <div class="col mt-3">
+            <label class="form-label">Class Group</label>
+            <input type="text" class="form-control" name="class_groupId" value="{{all_student_attendance.class_groupId}}"/>
+        </div>
+        <div class="col mt-3">
+            <label class="form-label">Remarks</label>
+            <input type="text" class="form-control" name="remarks" value="{{all_student_attendance.remarks}}"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col mt-3">
+            <input type="submit" class="btn btn mt-3"/>
+            <span><a href="{{url_for('show_student_attendance')}}">Cancel</a></span>
+        </div>
+    </div>
+    
+</div>
+
+</form>
+
+<script>
+(function () {
+
+  var clockElement = document.getElementById( "clock" );
+
+  function updateClock ( clock ) {
+    clock.innerHTML = new Date().toLocaleTimeString();
+  }
+
+  setInterval(function () {
+      updateClock( clockElement );
+  }, 1000);
+
+}());
+</script>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.template.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<div class="container">
+<h2>Search</h2>
+<p> Search according to Student's name, Class Group or Teacher</p>
+
+<form method="POST">
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom01">Student Name</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="Student Name" name="first_name">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom01">Class Group</label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="Class Group" name="class_groupId">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom01">Teacher</label>
+            <input type="text" class="form-control" id="validationCustom03" placeholder="Teacher Name" name="teacher">
+        </div>
+    </div>
+
+  <button class="btn btn" type="submit">Search</button>
+</form>
+</div>
+<br>
+<br>
+
+{% endblock %}

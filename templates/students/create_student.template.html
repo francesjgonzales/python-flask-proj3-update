@@ -1,0 +1,65 @@
+{% extends 'base.template.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<div class="container">
+    <h2>Add student</h2>
+    <form id="student_form" method="POST" class="needs-validation" novalidate >
+
+        <div>
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" placeholder="First name" name="first_name" required/>
+            <div class="invalid-feedback">Please fill this up.</div>
+        </div>
+        <div>
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" placeholder="Last name" name="last_name" required/>
+            <div class="invalid-feedback">Please fill this up.</div>
+        </div>
+        <div>
+            <label class="form-label">Date of Birth</label>
+            <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" required />
+            <div class="invalid-feedback">Please fill this up.</div>
+        </div>
+        <div>
+            <label class="form-label">Clock-in</label>
+            <input id="clock_in" type="time" class="form-control" name="clock_in"  />
+        </div>
+        <div>
+            <label class="form-label">Clock-out</label>
+            <input id="clock_out" type="time" class="form-control" name="clock_out"  />
+        </div>
+        <div>
+            <label class="form-label">Temparature</label>
+            <input id="temparature" type="text" class="form-control" placeholder="36.6" name="temparature"  />
+        </div>
+        <div>
+            <label class="form-label">Class Group</label>
+            <input id="class_groupId" type="text" class="form-control" placeholder="Sunflower" name="class_groupId" required />
+            <div class="invalid-feedback">Please fill this up.</div>
+        </div>
+        <div>
+            <label class="form-label">Teacher</label>
+            <input id="teacher" type="text" class="form-control" placeholder="Teacher's name" name="teacher" required />
+            <div class="invalid-feedback">Please fill this up.</div>
+        </div>
+        <div>
+            <label class="form-label">Remarks</label>
+            <input id="remarks" type="text" class="form-control" placeholder="eg. Child is on medical leave" name="remarks" />
+        </div>
+        <div id="error_message"></div>
+        <div class="row">
+            <button type="submit" class="btn btn mt-3">Submit</button>
+            <a class="nav-link" href="{{ url_for('show_teachers') }}">Cancel</a>
+        </div>
+
+
+    </form> 
+
+</div>
+<br>
+<br>
+
+{% endblock %}

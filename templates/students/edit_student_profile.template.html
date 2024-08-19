@@ -1,0 +1,44 @@
+{% extends 'base.template.html' %}
+
+{% block content %}
+<br>
+<br>
+
+<form method="POST">
+
+<div class="container">
+<h2>Edit Student Profile</h2>
+
+    <div class="row">
+        <div class="col mt-3">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" placeholder="First Name" name="first_name" value="{{all_student_profile.first_name}}"/>
+
+        </div>
+        <div class="col mt-3">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{all_student_profile.last_name}}"/>
+        </div>
+        <div class="col mt-3">
+            <label class="form-label">Date of Birth</label>
+            <input type="text" class="form-control" name="date_of_birth" placeholder="Date of birth" value="{{all_student_profile.date_of_birth}}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mt-3">
+            <label class="form-label">Class Group</label>
+            <input type="text" class="form-control" name="class_groupId" placeholder="Class Group"  value="{{all_student_profile.class_groupId}}"/>
+        </div>
+        <div class="col mt-3">
+            <label class="form-label">Teacher</label>
+            <input type="text" class="form-control" name="teacher" placeholder="Teacher" value="{{all_student_profile.teacher}}"/>
+        </div>
+    </div>
+    <input type="submit" class="btn btn mt-3"/>
+
+</div>
+
+
+</form>
+
+{% endblock %}

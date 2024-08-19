@@ -30,18 +30,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav text-right ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="">Home</a>
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="">Teacher Login</a>
+                    <a class="nav-link" href="{{ url_for('teacher_login') }}">Teacher Login</a>
                 </li>
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="">Parent Login</a>
+                    <a class="nav-link" href="{{ url_for('parent_login')}}">Parent Login</a>
                 </li>
             </ul>
         </div>
     </nav>
+
 
 
 
