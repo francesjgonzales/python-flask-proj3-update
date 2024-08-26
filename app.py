@@ -1,5 +1,5 @@
 import datetime
-from flask import Flask, render_template
+from flask import Flask, flash, redirect, render_template, request, url_for
 from dotenv import load_dotenv, find_dotenv
 import os
 import pprint
@@ -10,13 +10,15 @@ import certifi
 load_dotenv(find_dotenv())
 
 print (datetime.date.today())
-password = os.environ.get("MONGODB_PWD")
+password = os.environ.get("SECRET_KEY")
 connection_string = f"mongodb+srv://jen:{password}@studentdb.thkbj.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(connection_string, tlsCAFile=certifi.where())
 
 """ print all database names """
 dbs = client.list_database_names()
-db = client['student']
+db_student = client['student']
+db_teacher = client['teachers']
+db_parent = client['parents']
 
 today = datetime.datetime.today()
 
@@ -39,6 +41,22 @@ def insert_student_doc():
 
 insert_student_doc()
  """
+""" db_teacher = client.teachers
+collections = db_teacher.list_collection_names()
+print(collections)
+
+def insert_teacher_doc():
+    collection = db_teacher.profile
+    profile_document = {
+        "First Name": "Namjoo0n",
+        "Last Name": "Kim",
+        "email": "test@gmail.com",
+        "password": "test"
+  }
+    inserted_id = collection.insert_one(profile_document).inserted_id
+    print(inserted_id)
+
+insert_teacher_doc() """
 
 app = Flask(__name__)
 
@@ -51,7 +69,8 @@ def home():
 
 @app.route('/teachers')
 def show_teachers():
-    all_teachers = db.parents.find()
+    all_teachers = db_teacher.teachers.find()
+    print(all_teachers)
     return render_template('teachers/teacher_profile.template.html',
                            all_teachers=all_teachers)
 
@@ -76,7 +95,7 @@ def process_create_teacher():
         'password': password
     }
 
-    db.teachers.insert_one(new_record)
+    db_teacher.teachers.insert_one(new_record)
     flash("Sign up successful")
     return redirect(url_for('show_teachers'))
 
@@ -93,7 +112,7 @@ def process_teacher_login():
     email = request.form.get('email')
     password = request.form.get('password')
 
-    db.teachers.find_one({
+    db_teacher.teachers.find_one({
         'email': email,
         'password': password
     })
