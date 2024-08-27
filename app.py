@@ -12,7 +12,7 @@ load_dotenv(find_dotenv())
 print (datetime.date.today())
 password = os.environ.get("SECRET_KEY")
 connection_string = f"mongodb+srv://jen:{password}@studentdb.thkbj.mongodb.net/?retryWrites=true&w=majority"
-client = MongoClient(connection_string, tlsCAFile=certifi.where())
+client = MongoClient(connection_string, tlsCAFile=certifi.where(), tls=True, tlsAllowInvalidCertificates=True)
 
 """ print all database names """
 dbs = client.list_database_names()
