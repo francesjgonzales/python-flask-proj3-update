@@ -5,6 +5,8 @@ import os
 import pprint
 from pymongo import MongoClient
 import certifi
+from bson.objectid import ObjectId
+
 
 
 load_dotenv(find_dotenv())
@@ -124,7 +126,7 @@ def process_teacher_login():
 
 @app.route('/parents')
 def show_parents():
-    all_parents = db.parents.find()
+    all_parents = db_parent.parents.find()
     return render_template('parents/all_parents.template.html',
                            all_parents=all_parents)
 
@@ -154,7 +156,7 @@ def process_create_parent():
         'password': password
     }
 
-    db.parents.insert_one(new_record)
+    db_parent.parents.insert_one(new_record)
     flash("Sign up successful")
     return redirect(url_for('show_parents'))
 
@@ -171,7 +173,7 @@ def process_parents_login():
     email = request.form.get('email')
     password = request.form.get('password')
 
-    db.parent.find_one({
+    db_parent.parent.find_one({
         'email': email,
         'password': password
     })
@@ -183,7 +185,7 @@ def process_parents_login():
 
 @app.route('/students')
 def show_students():
-    all_students = db.students.find()
+    all_students = db_student.students.find()
     return render_template('students/all_students.template.html',
                            all_students=all_students)
 
@@ -219,7 +221,7 @@ def process_create_student():
         "remarks": remarks
     }
 
-    db.students.insert_one(new_record)
+    db_student.students.insert_one(new_record)
     return redirect(url_for('show_students'))
 
 
@@ -227,7 +229,7 @@ def process_create_student():
 
 @app.route('/students/edit/<student_id>')
 def show_edit_student(student_id):
-    student = db.students.find_one({
+    student = db_student.students.find_one({
         '_id': ObjectId(student_id)
     })
     return render_template('students/edit_student.template.html',
@@ -244,7 +246,7 @@ def process_edit_student(student_id):
     class_groupId = request.form.get("class_groupId")
     teacher = request.form.get("teacher")
 
-    db.students.update_one({
+    db_student.students.update_one({
         "_id": ObjectId(student_id)
     }, {
         "$set": {
@@ -264,7 +266,7 @@ def process_edit_student(student_id):
 
 @app.route('/students/profile')
 def show_student_profile():
-    all_student_profile = db.students.find()
+    all_student_profile = db_student.students.find()
     return render_template('students/student_profile.template.html',
                            all_student_profile=all_student_profile)
 
@@ -273,7 +275,7 @@ def show_student_profile():
 
 @app.route('/students/profile/edit/<student_id>')
 def show_edit_student_profile(student_id):
-    all_student_profile = db.students.find_one({
+    all_student_profile = db_student.students.find_one({
         '_id': ObjectId(student_id)
     })
     return render_template('students/edit_student_profile.template.html',
@@ -288,7 +290,7 @@ def process_edit_student_profile(student_id):
     class_groupId = request.form.get("class_groupId")
     teacher = request.form.get("teacher")
 
-    db.students.update_one({
+    db_student.students.update_one({
         "_id": ObjectId(student_id)
     }, {
         "$set": {
@@ -306,7 +308,7 @@ def process_edit_student_profile(student_id):
 
 @app.route('/students/attendance')
 def show_student_attendance():
-    all_student_attendance = db.students.find()
+    all_student_attendance = db_student.students.find()
     return render_template('students/student_attendance.template.html',
                            all_student_attendance=all_student_attendance)
 
@@ -315,7 +317,7 @@ def show_student_attendance():
 
 @app.route('/students/attendance/edit/<student_id>')
 def show_edit_student_attendance(student_id):
-    all_student_attendance = db.students.find_one({
+    all_student_attendance = db_student.students.find_one({
         '_id': ObjectId(student_id)
     })
     return render_template('students/edit_student_attendance.template.html',
@@ -334,7 +336,7 @@ def process_edit_student_attendance(student_id):
 
     remarks = request.form.get("remarks")
 
-    db.students.update_one({
+    db_student.students.update_one({
         "_id": ObjectId(student_id)
     }, {
         "$set": {
@@ -354,7 +356,7 @@ def process_edit_student_attendance(student_id):
 
 @app.route('/students/delete/<student_id>')
 def show_confirm_delete(student_id):
-    students_to_be_deleted = db.students.find_one({
+    students_to_be_deleted = db_student.students.find_one({
         "_id": ObjectId(student_id)
     })
     return render_template('students/show_confirm_delete.template.html',
@@ -363,7 +365,7 @@ def show_confirm_delete(student_id):
 
 @app.route('/students/delete/<student_id>', methods=["POST"])
 def confirm_delete(student_id):
-    db.students.remove({
+    db_student.students.remove({
         "_id": ObjectId(student_id)
     })
     return redirect(url_for("show_students"))
@@ -404,7 +406,7 @@ def process_search_form():
 
     searched_by = [first_name, class_groupId, teacher]
 
-    results = db.students.find(critera)
+    results = db_student.students.find(critera)
     
     return render_template('students/display_student.template.html',
                            all_students=results,
