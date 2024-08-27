@@ -7,8 +7,6 @@ from pymongo import MongoClient
 import certifi
 from bson.objectid import ObjectId
 
-
-
 load_dotenv(find_dotenv())
 
 print (datetime.date.today())
@@ -18,7 +16,7 @@ client = MongoClient(connection_string, tlsCAFile=certifi.where())
 
 """ print all database names """
 dbs = client.list_database_names()
-db_student = client['student']
+db_student = client['profile']
 db_teacher = client['teachers']
 db_parent = client['parents']
 
@@ -61,6 +59,7 @@ def insert_teacher_doc():
 insert_teacher_doc() """
 
 app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY')
 
 @app.route("/")
 def home():
